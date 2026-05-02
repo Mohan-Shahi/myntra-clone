@@ -1,0 +1,124 @@
+body{
+    margin: 0;
+    font-family: arial;
+}
+.navbar{
+    display: flex;
+    border-bottom: 1px solid black;
+    align-items: center;
+    height: 80px;
+}
+.navbar .first-bar{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.navbar .second-bar{
+    display: flex;
+    gap: 20px;
+    height: 100%;
+    width: 600px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    
+}
+.navbar .second-bar a{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+.navbar .third-bar{
+    height: 100%;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar .third-bar div{
+    background: rgba(219, 219, 219, 0.553);
+    height: 40px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    gap: 10px;
+    padding: 0px 10px;
+
+}
+
+.third-bar div i{
+    color: black;
+}
+
+.third-bar div input{
+    font-size: 15px;
+    width: 400px;
+    background: transparent;
+    border: none;
+}
+
+.third-bar div input:focus{
+    outline: none;
+}
+
+.navbar .fourth-bar{
+    display: flex;
+    height: 100%;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+.navbar .fourth-bar div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar .fourth-bar div i{
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+.navbar .fourth-bar .number1{
+    border: 1px solid black;
+    display: flex;
+    height: 15px;
+    width: 15px;
+    align-items: center;
+    margin-left: -42px;
+    margin-top: -30px;
+    font-size: x-small;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background: rgb(199, 1, 1);
+}
+.number1 p{
+    margin-top: 1px;
+}
+.profile3{
+    margin-left: 14px;
+}
+.navbar .fourth-bar .number2{
+    border: 1px solid black;
+    display: flex;
+    height: 15px;
+    width: 15px;
+    align-items: center;
+    margin-left: -30px;
+    margin-top: -30px;
+    font-size: x-small;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background: rgb(199, 1, 1);
+}
+.number2 p{
+    margin-top: 1px;
+}
