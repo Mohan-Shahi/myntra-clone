@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mintra home page</title>
+    <title>Myntra bag</title>
+    <link rel="stylesheet" href="myntra_bag.css">
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
     rel="stylesheet"
     />
-    <link rel="stylesheet" href="mintra.css">
 </head>
 <body>
-    <header class="">
+     <header class="">
         <nav class="navbar">
-             <div class="first-bar">
-                <img src="myntra.avif" style="height: 50px; width: 100px;" alt="">
-             </div>
+             <a href="mintra.html">
+                 <div class="first-bar">
+                    <img src="myntra.avif" style="height: 50px; width: 100px;" alt="">
+                 </div>
+             </a>
              <div class="second-bar">
                 <a href="">MEN</a>
                 <a href="">WOMEN</a>
@@ -31,12 +33,10 @@
                 </div>
              </div>
              <div class="fourth-bar">
-                <a href="">
-                    <div class="profile1">
-                        <i class="ri-user-3-line"></i>
-                        <p>Profile</p>
-                    </div>
-                </a>
+                <div class="profile1">
+                    <i class="ri-user-3-line"></i>
+                    <p>Profile</p>
+                </div>
                 <div class="profile2">
                     <i class="ri-poker-hearts-line"></i>
                     <p>Wishlist</p>
@@ -44,25 +44,31 @@
                 <div class="number1">
                     <p id="number1">1</p>
                 </div>
-                <a href="myntra_bag.html" style="text-decoration: none; color: black;">
-                    <div class="profile3">
-                        <i class="ri-shopping-bag-line"></i>
-                        <p>Bag</p>
-                    </div>
-                </a>
+                <div class="profile3">
+                    <i class="ri-shopping-bag-line"></i>
+                    <p>Bag</p>
+                </div>
                 <div class="number_display">
                     
                 </div>
              </div>
         </nav>
     </header>
-     <main class="main-contain">
-        <section class="body-contain"></section>
-        <div class="display_message">
-            <p> Succesfully Added </p>
-        </div>
-    </main> 
+    <main class="main-container">
+        <section class="content">
+            <div class="card">
+                <div class="img-content">
+                    <img src="dress.webp" alt="">
+                </div>
+                <div class="other-content">
+                    <h5 id="ratting">${product_list[i].rate}⭐ | ${product_list[i].personToRate}</h5>
+                    <h3 id="name">${product_list[i].name}</h3>
+                    <p id="name-ref">${product_list[i].nameRef}</p>
+                    <h4 id="price">Rs ${product_list[i].price}</h4>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
-
-<script type="module" src="mintra.js"></script>
+<script type="module" src="myntra_bag.js"></script>
 </html>

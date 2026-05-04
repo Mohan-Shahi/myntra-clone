@@ -128,85 +128,28 @@ body{
     margin-top: 1px;
 }
 
-.main-contain{
-    display: flex;
+.main-container{
     height: 100%;
 }
-
-.body-contain{
-    display: flex;
-    height: 100%;
-    width: 1200px;
-    margin-left: 200px;
-    margin-top: 50px;
-    flex-wrap: wrap;
-}
-
-.body-contain div{
+.main-container .content{
     display: flex;
     flex-direction: column;
-    object-fit: cover;
-    margin: 20px;
+    gap: 30px;
+    height: 100%;
+    width: 50%;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+.card{
+    display: flex;
+    gap: 30px;
+    border: 1px solid rgba(141, 141, 141, 0.71);
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.body-contain div img{
+.content .card div img{
     height: 250px;
     width: 250px;
-}
-
-.card #ratting{
-    margin-top: 0px;
-}
-.card #name{
-    margin-top: -5px;
-}
-.card #name-ref{
-    margin-top: -15px;
-}
-.card #price{
-    margin-top: 0px;
-}
-.card #addbtn{
-    margin-top: -10px;
-    padding: 5px 0px;
-    font-size: large;
-    border: none;
-    border-radius: 10px;
-    background: lightgreen;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.card #addbtn:hover{
-    background: rgba(46, 153, 46, 0.737);
-}
-.card #addwish{
-
-    margin-top: 5px;
-    padding: 5px 0px;
-    font-size: large;
-    border: none;
-    border-radius: 10px;
-    background: red;
-    cursor: pointer;
-    color: white;
-    transition: all 0.3s ease;
-}
-.card #addwish:hover{
-    background: rgba(46, 153, 46, 0.737);
-}
-
-
-.display_message{
-    position: fixed;
-    display: none;
-    top: 640px;
-    left: 1300px;
-    padding: 0px 20px;
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    text-shadow: 1px 2px 4px rgba(0,0,0,.3);
-    background: rgb(124, 207, 124);
-    transition: all 0.3s ease-in-out;
 }
 
