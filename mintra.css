@@ -113,11 +113,12 @@ body{
 .navbar .fourth-bar .number2{
     border: 1px solid black;
     display: flex;
+    visibility: hidden;
     height: 15px;
     width: 15px;
     align-items: center;
-    margin-left: -45px;
-    margin-top: -25px;
+    margin-left: -35px;
+    margin-top: -30px;
     font-size: x-small;
     border-radius: 50%;
     border: none;
@@ -209,4 +210,15 @@ body{
     background: rgb(124, 207, 124);
     transition: all 0.3s ease-in-out;
 }
+
+.price-contain{
+    margin-left:0px; 
+    align-items:center; 
+    gap:10px;
+}
+
+#discount{
+    color: rgba(255, 0, 0, 0.656);
+}
+
 

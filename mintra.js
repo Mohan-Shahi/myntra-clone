@@ -9,166 +9,201 @@ search.addEventListener('blur', () => {
     search_icon.style.color = 'black' 
 })
 
-
-const product_list = [
+export let product_list = [
     {
+        Id:'001',
         name:`Lilly Pulitzer`,
         nameRef:`Women's Resort Wear,Dresses...`,
         price:200,
         rate:4.5,
         img:`dress.webp`,
-        personToRate:200
+        personToRate:200,
+        discount:20,
+        quantity:1
     },
     {
+        Id:'002',
         name:`Twamev`,
         nameRef:`Men's Mix Classic and Conte...`,
         price:1000,
         rate:3,
         img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
-        personToRate:130
+        personToRate:130,
+        discount:40,
+        quantity:1
     },
     {
+        Id:'003',
         name:`Lilly Pulitzer`,
         nameRef:`Women's Resort Wear,Dresses...`,
         price:200,
         rate:4.5,
         img:`dress.webp`,
-        personToRate:200
+        personToRate:200,
+        discount:50,
+        quantity:1
     },
     {
+        Id:'004',
+        name:`Clothes`,
+        nameRef:`Men's Mix Classic and ....`,
+        price:1000,
+        rate:3,
+        img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
+        personToRate:130,
+        discount:50,
+        quantity:1
+    },
+    {
+        Id:'005',
+        name:`Lilly Pulitzer`,
+        nameRef:`Women's Resort Wear,Dresses...`,
+        price:200,
+        rate:4.5,
+        img:`dress.webp`,
+        personToRate:200,
+        discount:50,
+        quantity:1
+    },
+    {
+        Id:'006',
         name:`Twamev`,
         nameRef:`Men's Mix Classic and Conte...`,
         price:1000,
         rate:3,
         img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
-        personToRate:130
+        personToRate:130,
+        discount:40,
+        quantity:1
     },
     {
+        Id:'007',
         name:`Lilly Pulitzer`,
         nameRef:`Women's Resort Wear,Dresses...`,
         price:200,
         rate:4.5,
         img:`dress.webp`,
-        personToRate:200
-    },
-    {
-        name:`Twamev`,
-        nameRef:`Men's Mix Classic and Conte...`,
-        price:1000,
-        rate:3,
-        img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
-        personToRate:130
-    },
-    {
-        name:`Lilly Pulitzer`,
-        nameRef:`Women's Resort Wear,Dresses...`,
-        price:200,
-        rate:4.5,
-        img:`dress.webp`,
-        personToRate:200
+        personToRate:200,
+        discount : 0,
+        quantity:1
     },
 ]
 
 
-export const in_bag_items = JSON.parse(localStorage.getItem('in_bag_items'))||[]
-
-const to_display_product = document.querySelector('.body-contain')
+export let in_bag_items = JSON.parse(localStorage.getItem('in_bag_items'))||[]
+let to_display_product = document.querySelector('.body-contain')
 
 
 let display_product = ()=>{
     let i=0;
 
     if (!to_display_product) {
-        console.error("body-contain not found");
         return;
     }
-    to_display_product.innerHTML = '';
+    let newHtml = '';
     for(i=0;i<product_list.length;i++){
-        to_display_product.innerHTML += `
-                    <div class="card">
-                            <img src="${product_list[i].img}" alt="">
-                            
-                            <h5 id="ratting">${product_list[i].rate}⭐ | ${product_list[i].personToRate}</h5>
-                            <h3 id="name">${product_list[i].name}</h3>
-                            <p id="name-ref">${product_list[i].nameRef}</p>
-                            <h4 id="price">Rs ${product_list[i].price}</h4>
-                            <button id="addbtn" data-index="${i}">Add to bag</button>
-                            <!--<button id="addwish"> Add To wish list</button> -->
-                    </div>
-                    `
-    }
-            
-    display_number_bag();
-        
-};
-
-       
-export let display_number_bag = ()=>{
-        let count_of_items =  JSON.parse(localStorage.getItem('count_of_items')) || 0;
-  
-        const bag_number1 = document.querySelector('.number_display')
-        let add_btn = document.querySelectorAll('#addbtn')
-
-        
-
-        if(count_of_items>0){
-            bag_number1.innerHTML=`<div class="number2">
-                                <p id="number2">${count_of_items}</p>
-                            </div>`
-
-            add_btn.forEach(btn => {
-            btn.addEventListener('click',()=>{
-                const index = btn.dataset.index;
-                const item = product_list[index];
-                console.log(item);
-
-                in_bag_items.push(item)
-                localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
-                display_message_function();
-                number_display_count();
-            })
-            let number_display_count = ()=>{
-            count_of_items++;
-            localStorage.setItem('count_of_items',JSON.stringify(count_of_items))
-            bag_number1.innerHTML=`<div class="number2">
-                                <p id="number2">${count_of_items}</p>
-                            </div>`
-        }
-        });
+        if(product_list[i].discount>0){
+            newHtml+= `
+                       <div class="card">
+                               <img src="${product_list[i].img}" alt="">
+                               
+                               <h5 id="ratting">${product_list[i].rate}⭐ | ${product_list[i].personToRate}</h5>
+                               <h3 id="name">${product_list[i].name}</h3>
+                               <p id="name-ref">${product_list[i].nameRef}</p>
+                               <div class="price-contain" style="display:flex; flex-direction:row; width:100%; margin-left:0px;">
+                                   <span id="current-price">Rs ${(product_list[i].discount/100)*product_list[i].price} </span> 
+                                   <span id="price" style="text-decoration: line-through;color: gray;font-size:12px;" >Rs ${product_list[i].price}</span>
+                                   <span id="discount">(${product_list[i].discount}% off)</span>           
+                               </div>
+                               <button id="addbtn" data-index="${i}">Add to bag</button>
+                               <!--<button id="addwish"> Add To wish list</button> -->
+                       </div>
+                       `
         }
         else{
-
-            add_btn.forEach(btn => {
-                btn.addEventListener('click',()=>{
-                    const index = btn.dataset.index;
-                    const item = product_list[index];
-
-                    
-                    in_bag_items.push(item)
-                    localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
-
-                    display_message_function();
-                    number_display_count();
-                })
-                let number_display_count = ()=>{
-                count_of_items++;
-                localStorage.setItem('count_of_items',JSON.stringify(count_of_items))
-                bag_number1.innerHTML=`<div class="number2">
-                                    <p id="number2">${count_of_items}</p>
-                                </div>`
-            }
-            });
+            newHtml+= `
+                       <div class="card">
+                               <img src="${product_list[i].img}" alt="">
+                               
+                               <h5 id="ratting">${product_list[i].rate}⭐ | ${product_list[i].personToRate}</h5>
+                               <h3 id="name">${product_list[i].name}</h3>
+                               <p id="name-ref">${product_list[i].nameRef}</p>
+                               <div class="price-contain" style="display:flex; flex-direction:row; width:100%; margin-left:0px;">
+                                   <span id="current-price">Rs ${product_list[i].price} </span>
+                                   <span id="discount"> Aparentlly no dicount</span> 
+                               </div>
+                               <button id="addbtn" data-index="${i}">Add to bag</button>
+                               <!--<button id="addwish"> Add To wish list</button> -->
+                       </div>
+                       `
         }
-        console.log(count_of_items)
+            
+    }   
+
+    to_display_product.innerHTML = newHtml;
+};
+
+let item_object_count = JSON.parse(localStorage.getItem('count'))|| [];
+// let item_object = JSON.parse(localStorage.getItem('item_count_quentity')) || [];
+// let item_object = JSON.parse(localStorage.getItem('item_object'))||[];
+
+export let add_items = ()=>{
+    let add_btn = document.querySelectorAll('#addbtn')
+    add_btn.forEach(btn => {
+        btn.addEventListener('click',()=>{
+            let index = btn.dataset.index;
+            let already_exist = in_bag_items.some(item =>
+                item.Id == product_list[index].Id 
+            )
+            if(already_exist){
+                item_object_count.push(product_list[index].Id)
+                // console.log(item_object_count)
+                let exist = in_bag_items.find(item =>
+                item.Id == product_list[index].Id
+                )
+                console.log(exist.Id)
+                exist.quantity+=1
+                
+            }
+            else{
+                item_object_count.push(product_list[index].Id)
+                in_bag_items.push(product_list[index] )
+                // console.log(item_object_count)
+                
+            }
+            
+            
+            
+            localStorage.setItem('count',JSON.stringify(item_object_count))
+            localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
+            // console.log(in_bag_items)
+            // console.log(item_object_count)
+            count_number_display();       
+            display_message_function();
+        })
+
+
+       
+    });
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    display_product();
-});
+export let count_number_display = ()=>{
+    let display_count = document.querySelector('.number2')
+    if(item_object_count.length>0){
+        display_count.style.visibility = 'visible';
+        display_count.innerHTML = `<p>${item_object_count.length
+        }</p>`;
+    }
+    else{
+        display_count.style.visibility = 'hidden'
+    }
+    
+}
+
 
 let display_message_function = ()=>{
-    const display_message = document.querySelector('.display_message')
+    let display_message = document.querySelector('.display_message')
     setTimeout(() => {
         display_message.style.display = 'flex';
         setTimeout(() =>{
@@ -177,8 +212,13 @@ let display_message_function = ()=>{
     });
    
 }
+export let onload = ()=>{
+    display_product();
+    add_items();
+    count_number_display(); 
+}
+onload();
 
-
-console.log(in_bag_items)
-
+// console.log(in_bag_items)
+// localStorage.clear()
 

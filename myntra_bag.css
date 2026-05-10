@@ -116,8 +116,8 @@ body{
     height: 15px;
     width: 15px;
     align-items: center;
-    margin-left: -45px;
-    margin-top: -25px;
+    margin-left: -30px;
+    margin-top: -30px;
     font-size: x-small;
     border-radius: 50%;
     border: none;
@@ -142,6 +142,7 @@ body{
 }
 .card{
     display: flex;
+    
     gap: 30px;
     border: 1px solid rgba(141, 141, 141, 0.71);
     padding: 10px;
@@ -151,5 +152,96 @@ body{
 .content .card div img{
     height: 250px;
     width: 250px;
+}
+
+
+.add,.sub{
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 50%;
+    background: rgb(160, 149, 244);
+    color: white;
+}
+.add:hover,.sub:hover{
+    background: rgba(160, 149, 244, 0.562);
+}
+
+.close{
+    right: 0px;
+    height: 40px;
+    width: 30px;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 200px;
+    cursor: pointer;
+}
+.close span:active{
+    color: rgba(128, 128, 128, 0.816);
+}
+
+.popup{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    top: 200px;
+    display: none;
+}
+
+.alert_item{
+    width: 350px;
+    height: 170px;
+    position: fixed;
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+}
+.alert_item h4{
+    font-size: 20px;
+    color: rgb(118, 7, 42);
+}
+.alert_item div{
+    display: flex;
+    gap: 50px;
+}
+.alert_item div button{
+    padding: 7px 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn_cancle{
+    background: rgb(176, 1, 1);
+    color: white;
+}
+.btn_cancle:hover{
+    background: rgb(222, 1, 1);
+}
+.btn_cancle:active{
+    transform: scale(1.02);
+}
+.btn_ok{
+    background: green;
+    color: white;
+}
+.btn_ok:hover{
+    background: rgb(1, 170, 1);
+}
+.btn_ok:active{
+    transform: scale(1.02);
 }
 

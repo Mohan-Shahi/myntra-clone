@@ -10,7 +10,7 @@
     rel="stylesheet"
     />
 </head>
-<body>
+<body class="body">
      <header class="">
         <nav class="navbar">
              <a href="mintra.html">
@@ -48,7 +48,7 @@
                     <i class="ri-shopping-bag-line"></i>
                     <p>Bag</p>
                 </div>
-                <div class="number_display">
+                <div class="number2">
                     
                 </div>
              </div>
@@ -58,16 +58,35 @@
         <section class="content">
             <div class="card">
                 <div class="img-content">
-                    <img src="dress.webp" alt="">
+                    <img src="" alt="">
                 </div>
+                
                 <div class="other-content">
-                    <h5 id="ratting">${product_list[i].rate}⭐ | ${product_list[i].personToRate}</h5>
-                    <h3 id="name">${product_list[i].name}</h3>
-                    <p id="name-ref">${product_list[i].nameRef}</p>
-                    <h4 id="price">Rs ${product_list[i].price}</h4>
+                    <h5 id="ratting">⭐ | </h5>
+                    <h3 id="name"></h3>
+                    <p id="name-ref"></p>
+                    <h4 id="price">Rs </h4>
+                    <div style="display:flex; gap:20px; font-size:20px;">
+                    <div class="add" data-index="">+</div>
+                    <p class="qty"></p>
+                    <div class="sub" data-index="">-</div>
+                    </div>
+                </div>
+                <div class="close">
+                        <span class="delete" data-index=""> X </span>
                 </div>
             </div>
+            
         </section>
+        <div class="popup">
+                <div class="alert_item">
+                    <h4>Do you want to remove item</h4>
+                    <div>
+                        <button class="btn_cancle">Cancle</button>
+                        <button class="btn_ok">OK</button>
+                    </div>
+                </div>
+        </div>
     </main>
 </body>
 <script type="module" src="myntra_bag.js"></script>
