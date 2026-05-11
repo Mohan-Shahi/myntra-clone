@@ -3,24 +3,40 @@ import { in_bag_items, onload, product_list,count_number_display, item_object_co
 
 const CONVINENCE_FEE = 99;
 
+let bag_items = [];
+
 let display_selected_item = ()=>{
-    let content_display = document.querySelector('.content')
+    let content_display = document.querySelector('.content');
+
+
+    bag_items = in_bag_items.map(item => {
+
+    let product = product_list.find(product =>
+        product.Id === item.Id
+        )
+
+        return {
+            ...product,
+            quantity:item.quantity
+        }
+    })
+
 
     let newhtml = '';
-    for(let i=0;i<in_bag_items.length;i++){
+    for(let i=0;i<bag_items.length;i++){
             newhtml +=`
                 <div class="card">
                    <div class="img-content">
-                       <img src="${in_bag_items[i].img}" alt="">
+                       <img src="${bag_items[i].img}" alt="">
                    </div>
                    
                    <div class="other-content">
-                       <h3 id="name">${in_bag_items[i].name}</h3>
-                       <p id="name-ref">${in_bag_items[i].nameRef}</p>
-                       <h4 id="price">Rs ${in_bag_items[i].price} </h4>
+                       <h3 id="name">${bag_items[i].name}</h3>
+                       <p id="name-ref">${bag_items[i].nameRef}</p>
+                       <h4 id="price">Rs ${bag_items[i].price} </h4>
                        <div style="display:flex; gap:20px; font-size:20px;">
                        <div class="add" data-index="${i}">+</div>
-                       <p class="qty">${in_bag_items[i].quantity}</p>
+                       <p class="qty">${bag_items[i].quantity}</p>
                        <div class="sub" data-index="${i}">-</div>
                        </div>
                    </div>
@@ -75,8 +91,12 @@ let quantity_add_subb = ()=>{
     add.forEach(btn=>{
         btn.addEventListener('click',()=>{
             let i = btn.dataset.index
-            in_bag_items[i].quantity+=1
-            item_object_count.length+=1
+            if(in_bag_items[i].quantity == in_bag_items[i].quantity_of_product){
+                console.log('full')
+            }else{
+                in_bag_items[i].quantity+=1
+                item_object_count.push(in_bag_items[i].Id)
+            }
             localStorage.setItem('count',JSON.stringify(item_object_count))
             localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
             display_selected_item();
@@ -100,10 +120,10 @@ let quantity_add_subb = ()=>{
                 item_object_count.length -=1
             }
             localStorage.setItem('count',JSON.stringify(item_object_count))
-                localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
-                display_selected_item();
-                count_number_display(); 
-                quantity_add_subb(); 
+            localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
+            display_selected_item();
+            count_number_display(); 
+            quantity_add_subb(); 
            
 })
     })
@@ -117,16 +137,15 @@ let calculation = ()=>{
     let Amount_after_discount = 0;
     let total_items = 0;
     let calculation = document.querySelector('.calculation')
-    if(in_bag_items.length<1){
+    if(bag_items.length<1){
         calculation.style.display = 'none'
         
     }
     else{
-        for(let i=0;i<in_bag_items.length;i++){
-        console.log((in_bag_items[i].price*in_bag_items[i].quantity)-((in_bag_items[i].discount*in_bag_items[i].price*in_bag_items[i].quantity)/100))
-        total_quantity+=in_bag_items[i].quantity
-        total_actual_amount +=in_bag_items[i].price*in_bag_items[i].quantity
-        total_discount_amount +=((in_bag_items[i].discount*in_bag_items[i].price*in_bag_items[i].quantity)/100)
+        for(let i=0;i<bag_items.length;i++){
+        total_quantity+=bag_items[i].quantity
+        total_actual_amount +=bag_items[i].price*bag_items[i].quantity
+        total_discount_amount +=((bag_items[i].discount*bag_items[i].price*bag_items[i].quantity)/100)
         }
         Amount_after_discount = total_actual_amount-total_discount_amount+CONVINENCE_FEE
 
@@ -140,6 +159,9 @@ let calculation = ()=>{
             <div class="total_amount_card">
                 <div class="total_amount"><h4>Total paying amount :</h4> <p>Rs ${Amount_after_discount}</p></div>
             </div>
+            <div class="div_pay">
+            <button class="btn_pay">procced to pay</button>
+            </div>
         `
     }   
 }
@@ -151,9 +173,9 @@ function all_onload(){
     delete_item();
     quantity_add_subb();
     calculation()
-    display_calcualtion();
 }
 all_onload();
+console.log(bag_items)
 
 
 

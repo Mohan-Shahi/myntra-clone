@@ -14,11 +14,12 @@ export let product_list = [
         Id:'001',
         name:`Lilly Pulitzer`,
         nameRef:`Women's Resort Wear,Dresses...`,
-        price:200,
+        price:1000,
         rate:4.5,
         img:`dress.webp`,
-        personToRate:200,
-        discount:20,
+        personToRate:120,
+        discount:5,
+        quantity_of_product:6,
         quantity:1
     },
     {
@@ -29,7 +30,8 @@ export let product_list = [
         rate:3,
         img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
         personToRate:130,
-        discount:40,
+        discount:12,
+        quantity_of_product:6,
         quantity:1
     },
     {
@@ -40,7 +42,8 @@ export let product_list = [
         rate:4.5,
         img:`dress.webp`,
         personToRate:200,
-        discount:50,
+        discount:10,
+        quantity_of_product:6,
         quantity:1
     },
     {
@@ -51,7 +54,8 @@ export let product_list = [
         rate:3,
         img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
         personToRate:130,
-        discount:50,
+        discount:5,
+        quantity_of_product:6,
         quantity:1
     },
     {
@@ -62,7 +66,8 @@ export let product_list = [
         rate:4.5,
         img:`dress.webp`,
         personToRate:200,
-        discount:50,
+        discount:5,
+        quantity_of_product:6,
         quantity:1
     },
     {
@@ -73,7 +78,8 @@ export let product_list = [
         rate:3,
         img:`How to Mix Classic and Contemporary Styles in Men's Festival Clothing_Blog 1.jpg`,
         personToRate:130,
-        discount:40,
+        discount:4,
+        quantity_of_product:7,
         quantity:1
     },
     {
@@ -84,7 +90,8 @@ export let product_list = [
         rate:4.5,
         img:`dress.webp`,
         personToRate:200,
-        discount : 0,
+        discount : 2,
+        quantity_of_product:8,
         quantity:1
     },
 ]
@@ -156,15 +163,23 @@ export let add_items = ()=>{
                 item.Id == product_list[index].Id 
             )
             if(already_exist){
-                item_object_count.push(product_list[index].Id)
+               
+                
                 let exist = in_bag_items.find(item =>
                 item.Id == product_list[index].Id
-                )                
-                exist.quantity+=1                
+                ) 
+                if(product_list[index].quantity_of_product==exist.quantity){
+                    console.log("full");
+                }else{
+                    exist.quantity+=1 
+                    item_object_count.push(product_list[index].Id)
+                }               
+                
             }
             else{
                 item_object_count.push(product_list[index].Id)
-                in_bag_items.push(product_list[index] )     
+                in_bag_items.push(product_list[index])
+                console.log(product_list[index].quantity_of_product)      
             }
             localStorage.setItem('count',JSON.stringify(item_object_count))
             localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
@@ -209,3 +224,4 @@ onload();
 // localStorage.clear()
 
 // localStorage.clear()
+console.log(in_bag_items)

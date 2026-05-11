@@ -252,6 +252,7 @@ body{
 
 
 .calculation{
+    position: sticky;
     border: 1px solid rgba(156, 156, 156, 0.547);
     right: 100px;
     border-radius: 5px;
@@ -297,4 +298,28 @@ body{
 .items p{
     font-size: larger;
     color: green;
+}
+
+.div_pay{
+    display: flex;
+    justify-content: center;
+}
+
+.btn_pay{
+    width: 70%;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    background: rgba(241, 97, 121, 0.655);
+    /* text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.264); */
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.btn_pay:hover{
+    background: rgba(241, 97, 121, 0.482);
+}
+.btn_pay:active{
+    transform: scale(1.02);
 }
