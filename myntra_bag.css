@@ -113,6 +113,7 @@ body{
 .navbar .fourth-bar .number2{
     border: 1px solid black;
     display: flex;
+    visibility: hidden;
     height: 15px;
     width: 15px;
     align-items: center;
@@ -130,6 +131,7 @@ body{
 
 .main-container{
     height: 100%;
+    display: flex;
 }
 .main-container .content{
     display: flex;
@@ -142,16 +144,19 @@ body{
 }
 .card{
     display: flex;
-    
     gap: 30px;
     border: 1px solid rgba(141, 141, 141, 0.71);
     padding: 10px;
+    width: 80%;
     border-radius: 10px;
 }
 
 .content .card div img{
-    height: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
+}
+#name-ref{
+    width: 400px;
 }
 
 
@@ -177,8 +182,8 @@ body{
     height: 40px;
     width: 30px;
     text-align: center;
-    font-size: 30px;
-    margin-left: 200px;
+    font-size: 25px;
+    margin-left: -10px;
     cursor: pointer;
 }
 .close span:active{
@@ -245,3 +250,51 @@ body{
     transform: scale(1.02);
 }
 
+
+.calculation{
+    border: 1px solid rgba(156, 156, 156, 0.547);
+    right: 100px;
+    border-radius: 5px;
+    /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.185); */
+    padding: 20px;
+    width: 450px;
+    height: 400px;
+    top: 100px;
+    display: flex;
+    margin-top: 40px;
+    flex-direction: column;
+}
+.calculation_card{
+    font-size: large;
+    border-bottom: 1px solid black;
+    
+}
+.calculation_card div{
+    display: flex;
+    margin-left: 40px;
+    gap: 10px;
+    align-items: center;
+}
+.total_amount{
+    display: flex;
+    margin-left: 40px;
+    gap: 10px;
+    align-items: center;
+}
+
+.actual_amount p{
+    color: green;
+}
+.discount_amount p{
+    color: red;
+}
+.shipping_amount p{
+    color: green;
+}
+.total_amount p{
+    color: green;
+}
+.items p{
+    font-size: larger;
+    color: green;
+}

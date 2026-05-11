@@ -111,7 +111,7 @@ let display_product = ()=>{
                                <h3 id="name">${product_list[i].name}</h3>
                                <p id="name-ref">${product_list[i].nameRef}</p>
                                <div class="price-contain" style="display:flex; flex-direction:row; width:100%; margin-left:0px;">
-                                   <span id="current-price">Rs ${(product_list[i].discount/100)*product_list[i].price} </span> 
+                                   <span id="current-price">Rs ${product_list[i].price-((product_list[i].discount*product_list[i].price)/100)} </span> 
                                    <span id="price" style="text-decoration: line-through;color: gray;font-size:12px;" >Rs ${product_list[i].price}</span>
                                    <span id="discount">(${product_list[i].discount}% off)</span>           
                                </div>
@@ -143,9 +143,9 @@ let display_product = ()=>{
     to_display_product.innerHTML = newHtml;
 };
 
-let item_object_count = JSON.parse(localStorage.getItem('count'))|| [];
-// let item_object = JSON.parse(localStorage.getItem('item_count_quentity')) || [];
-// let item_object = JSON.parse(localStorage.getItem('item_object'))||[];
+export let item_object_count = JSON.parse(localStorage.getItem('count')) || [];
+
+
 
 export let add_items = ()=>{
     let add_btn = document.querySelectorAll('#addbtn')
@@ -157,33 +157,20 @@ export let add_items = ()=>{
             )
             if(already_exist){
                 item_object_count.push(product_list[index].Id)
-                // console.log(item_object_count)
                 let exist = in_bag_items.find(item =>
                 item.Id == product_list[index].Id
-                )
-                console.log(exist.Id)
-                exist.quantity+=1
-                
+                )                
+                exist.quantity+=1                
             }
             else{
                 item_object_count.push(product_list[index].Id)
-                in_bag_items.push(product_list[index] )
-                // console.log(item_object_count)
-                
+                in_bag_items.push(product_list[index] )     
             }
-            
-            
-            
             localStorage.setItem('count',JSON.stringify(item_object_count))
             localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
-            // console.log(in_bag_items)
-            // console.log(item_object_count)
             count_number_display();       
             display_message_function();
-        })
-
-
-       
+        })   
     });
 }
 
@@ -198,7 +185,6 @@ export let count_number_display = ()=>{
     else{
         display_count.style.visibility = 'hidden'
     }
-    
 }
 
 
@@ -222,3 +208,4 @@ onload();
 // console.log(in_bag_items)
 // localStorage.clear()
 
+// localStorage.clear()
