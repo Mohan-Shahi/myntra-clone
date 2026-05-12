@@ -1,4 +1,4 @@
-import { in_bag_items, onload, product_list,count_number_display, item_object_count } from "./mintra.js";
+import { in_bag_items, onload, product_list,count_number_display, item_object_count } from "./myntra.js";
 
 
 const CONVINENCE_FEE = 99;
@@ -50,13 +50,14 @@ let display_selected_item = ()=>{
     content_display.innerHTML = newhtml;
 }
 
+
 let delete_item = ()=>{
     let delete_btn = document.querySelectorAll('.delete')
+    let index; 
+    
     let popup = document.querySelector('.popup')
     let btn_ok = document.querySelector('.btn_ok')
     let btn_cancle = document.querySelector('.btn_cancle')
-    let index; 
-    
     delete_btn.forEach(btn =>{
         btn.addEventListener('click',()=>{
             index = btn.dataset.index
@@ -106,18 +107,17 @@ let quantity_add_subb = ()=>{
         })
     })
     let sub = document.querySelectorAll('.sub')
-    let popup = document.querySelector('.popup')
 
     sub.forEach(btn=>{
         btn.addEventListener('click',()=>{
             let i = btn.dataset.index
-            if(in_bag_items[i].quantity>1){
+            if(in_bag_items[i].quantity>0){
                 in_bag_items[i].quantity-=1
                 item_object_count.length-=1
             }
             else{
-                in_bag_items.splice(i,1)
-                item_object_count.length -=1
+                // in_bag_items.splice(i,1)
+                // item_object_count.length -=1  
             }
             localStorage.setItem('count',JSON.stringify(item_object_count))
             localStorage.setItem('in_bag_items',JSON.stringify(in_bag_items))
@@ -149,12 +149,14 @@ let calculation = ()=>{
         }
         Amount_after_discount = total_actual_amount-total_discount_amount+CONVINENCE_FEE
 
+        
+
         calculation.innerHTML = `
             <div class="calculation_card">
                 <div class="items"> No of items+quantity (<p> ${total_quantity} </p>) </div>
                 <div class="actual_amount"><h4>Price of Items :</h4> <p>Rs ${total_actual_amount}</p></div>
                 <div class="discount_amount"><h4>Discount amount :</h4> <p>Rs ${total_discount_amount} </p></div>
-                <div class="shipping_amount"><h4>Shipping amount :</h4> <p>Rs ${CONVINENCE_FEE}</p></div>
+                <div class="shipping_amount"><h4>Shipping amount :</h4> ${total_quantity==0 && `<p>Rs ${0}</p>` || `<p>Rs ${CONVINENCE_FEE}</p>`} </div>
             </div>
             <div class="total_amount_card">
                 <div class="total_amount"><h4>Total paying amount :</h4> <p>Rs ${Amount_after_discount}</p></div>
@@ -176,6 +178,7 @@ function all_onload(){
 }
 all_onload();
 console.log(bag_items)
+// localStorage.clear()
 
 
 
